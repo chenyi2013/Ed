@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,7 +28,8 @@ import com.ssf.edog.util.TimeUtils;
 
 @SuppressLint("NewApi")
 public class TimeSettingFragment extends Fragment implements OnClickListener,
-		OnItemSelectedListener, MachineUtil.OnStateListener {
+		OnItemSelectedListener, MachineUtil.OnStateListener,
+		android.content.DialogInterface.OnClickListener {
 
 	private Spinner mSpinner;// 定时选项菜单
 
@@ -52,6 +54,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 	private AlarmManager mAlarmManager;
 
 	private AlertDialog mAlertDialog;
+
+	private boolean mIsExitActivity = false;
 
 	MachineUtil mMachineUtil;// 定时开关机工具类的实例
 
@@ -103,7 +107,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		mSaveSettingBtn.setOnClickListener(this);
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setNeutralButton(getString(R.string.confirm), null);
+		builder.setNeutralButton(getString(R.string.confirm), this);
+		builder.setCancelable(false);
 		mAlertDialog = builder.create();
 
 		mAlertTextView = (TextView) getView().findViewById(R.id.alert);
@@ -264,6 +269,7 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		switch (mSpinner.getSelectedItemPosition()) {
 
 		case 0: {
+			mIsExitActivity = true;
 
 			mPreferenceUtil.setType(SharedPreferenceUtil.CLOSE_SETTING);
 			mAlertDialog.setTitle(getResources().getString(
@@ -297,6 +303,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 			break;
 		case 2: {
 
+			mIsExitActivity = true;
+
 			mPreferenceUtil.setRebootHour(mOnHour);
 			mPreferenceUtil.setRebootMinute(mOnMinute);
 
@@ -314,6 +322,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		}
 			break;
 		case 3: {
+
+			mIsExitActivity = true;
 
 			mPreferenceUtil.setOffHour(mOffHour);
 			mPreferenceUtil.setOffMinute(mOffMinute);
@@ -387,6 +397,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 	@Override
 	public void onError(String msg) {
 
+		mIsExitActivity = false;
+
 		mAlertDialog.setTitle(getResources().getString(
 				R.string.error_prompt_title));
 		mAlertDialog.setMessage(msg);
@@ -397,11 +409,21 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 	@Override
 	public void onSccessful(String msg) {
 
+		mIsExitActivity = true;
+
 		mAlertDialog.setTitle(getResources().getString(
 				R.string.info_prompt_title));
 		mAlertDialog.setMessage(msg);
 		mAlertDialog.show();
 
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+
+		if (mIsExitActivity) {
+			getActivity().finish();
+		}
 	}
 
 }

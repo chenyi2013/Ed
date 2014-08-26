@@ -18,7 +18,8 @@
             android:id="@+id/on_off_btn"
             style="@style/ButtonFont"
             android:layout_width="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="40dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/timing_on_off_setting" />
@@ -27,7 +28,8 @@
             android:id="@+id/edog_seting_btn"
             style="@style/ButtonFont"
             android:layout_width="match_parent"
-            android:layout_marginBottom="20dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="40dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/edog_setting" />
@@ -36,9 +38,20 @@
             android:id="@+id/modify_pwd_setting_btn"
             style="@style/ButtonFont"
             android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="40dp"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="@string/modify_pwd" />
+
+        <Button
+            android:id="@+id/open_puji_guanjia_btn"
+            style="@style/ButtonFont"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/open_puji_guanjia_btn" />
     </LinearLayout>
 
     <include layout="@layout/bottom_layout" />

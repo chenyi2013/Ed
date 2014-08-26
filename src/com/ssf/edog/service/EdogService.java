@@ -22,7 +22,6 @@ public class EdogService extends Service {
 	private ActivityManager mActivityManager;
 	private SharedPreferenceUtil mPreferenceUtil;
 	private ScheduledExecutorService mExecutorService;
-	private PackageManager mPackageManager;
 	private static final int SUCCESS = 1;
 
 	private static final String TAG = "EdogService";
@@ -63,6 +62,10 @@ public class EdogService extends Service {
 			@Override
 			public void run() {
 
+				if (!mPreferenceUtil.isSwitch()) {
+					stopSelf();
+				}
+
 				// 得到当前正在前台运行的应用程序包名
 				String runingBagName = mActivityManager.getRunningTasks(1).get(
 						0).topActivity.getPackageName();
@@ -76,6 +79,7 @@ public class EdogService extends Service {
 
 				// 如果当前在前台运行的程序是电子狗则不用执行后续代码
 				if (runingBagName.equals(mCurrentPackageName)) {
+					mPreferenceUtil.setEnable(true);
 					return;
 				}
 				// 所要监听的程序不在前台运行，切换到该程序

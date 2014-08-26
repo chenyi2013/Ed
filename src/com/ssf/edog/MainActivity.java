@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ssf.edog.service.EdogService;
 import com.ssf.edog.util.SharedPreferenceUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -31,6 +32,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		mPreferenceUtil = new SharedPreferenceUtil(this);
 		initView();
+
 	}
 
 	/**
@@ -49,6 +51,10 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		mErrorDisplay = (TextView) findViewById(R.id.error_display);
 		mPwdText = (EditText) findViewById(R.id.password_text);
+
+		Intent intent = new Intent(this, EdogService.class);
+		stopService(intent);
+		startService(intent);
 	}
 
 	/**

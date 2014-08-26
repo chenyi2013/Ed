@@ -4,6 +4,7 @@ import com.ssf.edog.util.SharedPreferenceUtil;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,15 +12,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class ModifyActivity extends Activity implements OnClickListener {
+public class ModifyActivity extends Activity implements OnClickListener,
+		android.content.DialogInterface.OnClickListener {
 
-	private EditText mOldPwdEdt;
 	private EditText mNewPwdEdt;
+	private EditText mReNewPwdEdt;
 	private Button mSaveButton;
 
 	private ImageView mFinishBtn;// 退出程序按钮
 
-	private String mOldPwd;// 旧密码
+	private String mReNewPwd;
 	private String mNewPwd;// 新密码
 
 	private AlertDialog mAlertDialog;
@@ -39,8 +41,8 @@ public class ModifyActivity extends Activity implements OnClickListener {
 	 */
 	private void initView() {
 
-		mOldPwdEdt = (EditText) findViewById(R.id.old_pwd);
 		mNewPwdEdt = (EditText) findViewById(R.id.new_pwd);
+		mReNewPwdEdt = (EditText) findViewById(R.id.re_new_pwd);
 
 		mSaveButton = (Button) findViewById(R.id.save_setting);
 		mSaveButton.setOnClickListener(this);
@@ -49,12 +51,12 @@ public class ModifyActivity extends Activity implements OnClickListener {
 		mFinishBtn.setOnClickListener(this);
 
 		mAlertDialog = new AlertDialog.Builder(this).setNeutralButton(
-				getString(R.string.confirm), null).create();
+				getString(R.string.confirm), this).create();
 	}
 
 	private void initData() {
-		mOldPwd = mOldPwdEdt.getText().toString().trim();
 		mNewPwd = mNewPwdEdt.getText().toString().trim();
+		mReNewPwd = mReNewPwdEdt.getText().toString().trim();
 
 	}
 
@@ -65,7 +67,7 @@ public class ModifyActivity extends Activity implements OnClickListener {
 		case R.id.save_setting: {
 			initData();
 
-			if (verifyOldPassword(mOldPwd) && verifyNewPassword(mNewPwd)) {
+			if (verifyNewPassword(mNewPwd, mReNewPwd)) {
 				mPreferenceUtil.savePassword(mNewPwd);
 				mAlertDialog
 						.setMessage(getString(R.string.modify_password_success));
@@ -86,30 +88,12 @@ public class ModifyActivity extends Activity implements OnClickListener {
 	}
 
 	/**
-	 * 验证用户输入的旧密码是否正确
-	 * 
-	 * @param pwd
-	 * @return
-	 */
-	private boolean verifyOldPassword(String pwd) {
-
-		if (pwd != null && pwd.equals(mPreferenceUtil.getPassword())) {
-			return true;
-		}
-
-		mOldPwdEdt.setError(getString(R.string.password_is_error));
-		mOldPwdEdt.requestFocus();
-
-		return false;
-	}
-
-	/**
 	 * 验证用户输入的新密码是否满足指定条件
 	 * 
 	 * @param newPwd
 	 * @return
 	 */
-	private boolean verifyNewPassword(String newPwd) {
+	private boolean verifyNewPassword(String newPwd, String reNewPwd) {
 
 		if (newPwd == null || "".equals(newPwd)) {
 
@@ -127,7 +111,21 @@ public class ModifyActivity extends Activity implements OnClickListener {
 
 		}
 
-		return true;
+		if (newPwd.equals(reNewPwd)) {
+			return true;
+		} else {
+			mReNewPwdEdt.setError(getString(R.string.password_diff_error));
+			mReNewPwdEdt.requestFocus();
+
+		}
+
+		return false;
+
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		finish();
 
 	}
 }

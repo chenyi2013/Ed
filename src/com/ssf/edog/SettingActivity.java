@@ -2,6 +2,7 @@ package com.ssf.edog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,8 @@ import android.widget.ToggleButton;
 import com.ssf.edog.service.EdogService;
 import com.ssf.edog.util.SharedPreferenceUtil;
 
-public class SettingActivity extends Activity implements OnClickListener {
+public class SettingActivity extends Activity implements OnClickListener,
+		android.content.DialogInterface.OnClickListener {
 
 	private ToggleButton mToggleButton;// 电子狗开关按钮
 	private EditText mIntervalText;// 用于输入电子狗嗅探时间间隔的文本框
@@ -53,7 +55,8 @@ public class SettingActivity extends Activity implements OnClickListener {
 		mFinishBtn.setOnClickListener(this);
 
 		mAlertDialog = new AlertDialog.Builder(this)
-				.setNeutralButton(getString(R.string.confirm), null)
+				.setNeutralButton(getString(R.string.confirm), this)
+				.setCancelable(false)
 				.setTitle(getString(R.string.info_prompt_title)).create();
 	}
 
@@ -84,18 +87,17 @@ public class SettingActivity extends Activity implements OnClickListener {
 		Intent intent = new Intent(this, EdogService.class);
 
 		stopService(intent);
-		Log.i(TAG,"stopService");
+		Log.i(TAG, "stopService");
 		if (toggle) {
 			mPreferenceUtil.setEnable(true);
 
 			startService(intent);
-			Log.i(TAG,"startService");
+			Log.i(TAG, "startService");
 
 		}
 
 		mAlertDialog.setMessage(getString(R.string.setting_success));
 		mAlertDialog.show();
-		finish();
 
 	}
 
@@ -115,5 +117,10 @@ public class SettingActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		finish();
 	}
 }

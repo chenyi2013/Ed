@@ -13,7 +13,7 @@ public class SharedPreferenceUtil {
 	/**
 	 * 电子狗开关的默认状态
 	 */
-	private static final boolean DEFAULT_SWITCH = false;
+	private static final boolean DEFAULT_SWITCH = true;
 
 	/**
 	 * 用于保存数据的文件名
@@ -140,7 +140,7 @@ public class SharedPreferenceUtil {
 	}
 
 	public boolean isEnable() {
-		return mSharedPreferences.getBoolean(IS_ENABLE_KEY, false);
+		return mSharedPreferences.getBoolean(IS_ENABLE_KEY, true);
 	}
 
 	/**

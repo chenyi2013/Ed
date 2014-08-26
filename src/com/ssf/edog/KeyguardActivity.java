@@ -2,6 +2,8 @@ package com.ssf.edog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssf.edog.config.Config;
+import com.ssf.edog.service.EdogService;
 import com.ssf.edog.util.SharedPreferenceUtil;
 
 /**
@@ -22,7 +25,8 @@ import com.ssf.edog.util.SharedPreferenceUtil;
  * @author Administrator
  * 
  */
-public class KeyguardActivity extends Activity implements OnClickListener {
+public class KeyguardActivity extends Activity implements OnClickListener,
+		android.content.DialogInterface.OnClickListener {
 
 	private int time = 0;// 等待用户输入密码的时间
 	private static final int SUCESS = 1;
@@ -32,6 +36,7 @@ public class KeyguardActivity extends Activity implements OnClickListener {
 	private EditText mPwdText;
 	private SharedPreferenceUtil mPreferenceUtil;
 	private ImageView mFinishBtn;
+	private AlertDialog mAlertDialog;
 
 	protected PackageManager mPackageManager;
 
@@ -50,8 +55,15 @@ public class KeyguardActivity extends Activity implements OnClickListener {
 
 					Intent intent = mPackageManager
 							.getLaunchIntentForPackage(Config.PACKAGE_NAME);
-					startActivity(intent);
-					finish();
+
+					if (intent != null) {
+						startActivity(intent);
+						finish();
+					} else {
+						mPreferenceUtil.saveSwitch(false);
+						finish();
+					}
+
 				}
 
 			}
@@ -66,6 +78,13 @@ public class KeyguardActivity extends Activity implements OnClickListener {
 		mPackageManager = getPackageManager();
 		mPreferenceUtil = new SharedPreferenceUtil(this);
 		initView();
+
+		Intent intent = mPackageManager
+				.getLaunchIntentForPackage(Config.PACKAGE_NAME);
+		if (intent == null) {
+			mAlertDialog.show();
+		}
+
 	}
 
 	/**
@@ -78,6 +97,15 @@ public class KeyguardActivity extends Activity implements OnClickListener {
 		mPwdText = (EditText) findViewById(R.id.password_text);
 		mFinishBtn = (ImageView) findViewById(R.id.finish);
 		mFinishBtn.setOnClickListener(this);
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setCancelable(false);
+		builder.setNegativeButton(getString(R.string.confirm), this);
+		builder.setTitle(getString(R.string.info_prompt_title));
+		builder.setMessage(getString(R.string.not_install_puji_guanjia));
+
+		mAlertDialog = builder.create();
 
 	}
 
@@ -131,6 +159,13 @@ public class KeyguardActivity extends Activity implements OnClickListener {
 		default:
 			break;
 		}
+
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		mPreferenceUtil.saveSwitch(false);
+		finish();
 
 	}
 }

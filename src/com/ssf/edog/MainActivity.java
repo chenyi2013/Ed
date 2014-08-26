@@ -1,6 +1,5 @@
 package com.ssf.edog;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssf.edog.service.EdogService;
-import com.ssf.edog.util.SharedPreferenceUtil;
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends BaseActivity implements OnClickListener {
 
 	private ImageView mFinishBtn;// 退出程序按钮
 	private ImageView mClearBtn;// 用于清空密码输入框内容的按钮
@@ -23,14 +21,11 @@ public class MainActivity extends Activity implements OnClickListener {
 	private EditText mPwdText;// 用户密码框
 	private TextView mErrorDisplay;// 显示错误信息
 
-	private SharedPreferenceUtil mPreferenceUtil;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
-		mPreferenceUtil = new SharedPreferenceUtil(this);
 		initView();
 
 	}

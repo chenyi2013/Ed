@@ -1,13 +1,12 @@
 package com.ssf.edog;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-public class TimeSettingActivity extends Activity implements OnClickListener {
+public class TimeSettingActivity extends BaseActivity implements OnClickListener {
 
 	private TimeSettingFragment mSettingFragment;
 

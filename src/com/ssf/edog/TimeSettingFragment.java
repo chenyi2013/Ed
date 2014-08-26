@@ -75,7 +75,7 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (getActivity() != null) {
-			mPreferenceUtil = new SharedPreferenceUtil(getActivity());
+			mPreferenceUtil = ((BaseActivity) getActivity()).mPreferenceUtil;
 			mAlarmManager = (AlarmManager) getActivity().getSystemService(
 					Context.ALARM_SERVICE);
 			mMachineUtil = new MachineUtil();

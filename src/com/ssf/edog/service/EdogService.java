@@ -79,7 +79,6 @@ public class EdogService extends Service {
 
 				// 如果当前在前台运行的程序是电子狗则不用执行后续代码
 				if (runingBagName.equals(mCurrentPackageName)) {
-					mPreferenceUtil.setEnable(true);
 					return;
 				}
 				// 所要监听的程序不在前台运行，切换到该程序

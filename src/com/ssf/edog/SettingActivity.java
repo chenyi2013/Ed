@@ -1,6 +1,5 @@
 package com.ssf.edog;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +14,15 @@ import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.ssf.edog.service.EdogService;
-import com.ssf.edog.util.SharedPreferenceUtil;
 
-public class SettingActivity extends Activity implements OnClickListener,
+public class SettingActivity extends BaseActivity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
 
 	private ToggleButton mToggleButton;// 电子狗开关按钮
 	private EditText mIntervalText;// 用于输入电子狗嗅探时间间隔的文本框
 	private Button mSaveSettingBtn;// 保存用户设置的按钮
 	private ImageView mFinishBtn;// 退出本设置界面的按钮
-	private SharedPreferenceUtil mPreferenceUtil;// 保存用户设置数据的工具类
+
 	private static final String TAG = "eileen";
 	private AlertDialog mAlertDialog;
 
@@ -33,7 +31,6 @@ public class SettingActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_setting);
-		mPreferenceUtil = new SharedPreferenceUtil(this);
 		initView();
 	}
 

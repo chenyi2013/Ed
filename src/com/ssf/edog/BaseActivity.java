@@ -1,10 +1,14 @@
 package com.ssf.edog;
 
+import com.ssf.edog.util.SharedPreferenceUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 public class BaseActivity extends Activity {
+
+	protected SharedPreferenceUtil mPreferenceUtil;
 
 	/**
 	 * 打开新的Activity
@@ -28,6 +32,19 @@ public class BaseActivity extends Activity {
 		if (bundle != null) {
 			intent.putExtras(bundle);
 		}
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mPreferenceUtil = new SharedPreferenceUtil(this);
+	}
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mPreferenceUtil.setEnable(true);
 	}
 
 }

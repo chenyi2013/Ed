@@ -1,7 +1,5 @@
 package com.ssf.edog;
 
-import com.ssf.edog.util.SharedPreferenceUtil;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-public class ModifyActivity extends Activity implements OnClickListener,
+public class ModifyActivity extends BaseActivity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
 
 	private EditText mNewPwdEdt;
@@ -26,13 +24,11 @@ public class ModifyActivity extends Activity implements OnClickListener,
 
 	private AlertDialog mAlertDialog;
 
-	private SharedPreferenceUtil mPreferenceUtil;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_modify);
-		mPreferenceUtil = new SharedPreferenceUtil(this);
+
 		initView();
 	}
 

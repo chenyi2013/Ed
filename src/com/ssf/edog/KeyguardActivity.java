@@ -34,11 +34,11 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 	private TextView mPromptTv;
 	private Button mEnterHomeBtn;
 	private EditText mPwdText;
-	private SharedPreferenceUtil mPreferenceUtil;
 	private ImageView mFinishBtn;
 	private AlertDialog mAlertDialog;
 
 	protected PackageManager mPackageManager;
+	protected SharedPreferenceUtil mPreferenceUtil;
 
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
@@ -61,6 +61,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 						finish();
 					} else {
 						mPreferenceUtil.saveSwitch(false);
+						mPreferenceUtil.setEnable(false);
 						finish();
 					}
 
@@ -111,7 +112,6 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 
 	@Override
 	protected void onResume() {
-
 		super.onResume();
 		time = Config.WAIT_REBOOT_TIME;// 初始化等待用户输入的时间
 		mHandler.sendEmptyMessageDelayed(SUCESS, 1000);// 启动计时器
@@ -165,6 +165,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		mPreferenceUtil.saveSwitch(false);
+		mPreferenceUtil.setEnable(false);
 		finish();
 
 	}

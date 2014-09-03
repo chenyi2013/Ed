@@ -88,9 +88,13 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 	 * 初始化UI组件
 	 */
 	public void initView() {
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+				R.layout.spinner_item, R.id.spinner_item, getResources()
+						.getStringArray(R.array.power_option));
 		mSpinner = (Spinner) getView().findViewById(R.id.spinner);
 		mSpinner.setSelection(0);
 		mSpinner.setOnItemSelectedListener(this);
+		mSpinner.setAdapter(adapter);
 
 		mOnTimeContainer = getView().findViewById(R.id.on_time_container);
 		mOffTimeContainer = getView().findViewById(R.id.off_time_container);
@@ -132,6 +136,8 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 
 					}
 				}, mOnHour, mOnMinute, true);
+		
+		
 
 		mPickOffTimeDialog = new TimePickerDialog(getActivity(),
 				new OnTimeSetListener() {

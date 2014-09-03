@@ -75,7 +75,6 @@
             android:name=".TimeSettingActivity"
             android:label="@string/title_activity_time_setting" >
         </activity>
-
         <activity
             android:name=".KeyguardActivity"
             android:label="@string/title_activity_keyguard" >

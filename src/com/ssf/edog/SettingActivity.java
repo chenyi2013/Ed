@@ -11,6 +11,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.ToggleButton;
 
 import com.ssf.edog.service.EdogService;
@@ -18,7 +19,7 @@ import com.ssf.edog.service.EdogService;
 public class SettingActivity extends BaseActivity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
 
-	private ToggleButton mToggleButton;// 电子狗开关按钮
+	private Switch mToggleButton;// 电子狗开关按钮
 	private EditText mIntervalText;// 用于输入电子狗嗅探时间间隔的文本框
 	private Button mSaveSettingBtn;// 保存用户设置的按钮
 	private ImageView mFinishBtn;// 退出本设置界面的按钮
@@ -39,7 +40,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 	 */
 	public void initView() {
 
-		mToggleButton = (ToggleButton) findViewById(R.id.toogle);
+		mToggleButton = (Switch) findViewById(R.id.toogle);
 		mToggleButton.setChecked(mPreferenceUtil.isSwitch());
 
 		mIntervalText = (EditText) findViewById(R.id.interval);

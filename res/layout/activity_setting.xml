@@ -28,14 +28,14 @@
                     style="@style/TitleFont"
                     android:text="@string/toggle_setting" />
 
-                <ToggleButton
+                <Switch
                     android:id="@+id/toogle"
-                    android:layout_width="200dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@android:style/TextAppearance.Large"
                     android:textColor="#ffffff"
                     android:textOff="@string/off_edog"
                     android:textOn="@string/on_edog"
-                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -51,8 +51,8 @@
 
                 <EditText
                     android:id="@+id/interval"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
                     android:background="#ffffff"
                     android:gravity="center"
                     android:inputType="number"

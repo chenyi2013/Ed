@@ -41,7 +41,8 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:entries="@array/power_option" />
+                    android:entries="@array/power_option"
+                    android:spinnerMode="dropdown" />
             </LinearLayout>
 
             <TextView

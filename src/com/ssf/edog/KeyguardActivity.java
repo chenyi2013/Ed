@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ssf.edog.config.Config;
-import com.ssf.edog.service.EdogService;
 import com.ssf.edog.util.SharedPreferenceUtil;
 
 /**

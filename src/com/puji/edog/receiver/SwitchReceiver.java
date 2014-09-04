@@ -1,11 +1,11 @@
-package com.ssf.edog.receiver;
+package com.puji.edog.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ssf.edog.config.Config;
-import com.ssf.edog.util.SharedPreferenceUtil;
+import com.puji.edog.config.Config;
+import com.puji.edog.util.SharedPreferenceUtil;
 
 public class SwitchReceiver extends BroadcastReceiver {
 

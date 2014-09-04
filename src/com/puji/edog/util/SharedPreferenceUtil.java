@@ -1,4 +1,4 @@
-package com.ssf.edog.util;
+package com.puji.edog.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -48,6 +48,8 @@ public class SharedPreferenceUtil {
 	public static final String REBOOT_MINUTE_KEY = "reboot_minute";
 	public static final String TYPE_KEY = "type";
 	public static final String IS_ENABLE_KEY = "is_enable_key";
+	public static final String PACKAGE_NAME_KEY = "package_name";
+	public static final String APP_NAME_KEY = "app_name";
 
 	public static final int CLOSE_SETTING = 0;
 	public static final int AUTO_ON_OFF = 1;
@@ -59,6 +61,26 @@ public class SharedPreferenceUtil {
 	public SharedPreferenceUtil(Context context) {
 		mSharedPreferences = context.getSharedPreferences(FILE_NAME,
 				Context.MODE_PRIVATE);
+	}
+
+	public void setAppName(String appName) {
+		SharedPreferences.Editor editor = mSharedPreferences.edit();
+		editor.putString(APP_NAME_KEY, appName);
+		editor.commit();
+	}
+
+	public String getAppName() {
+		return mSharedPreferences.getString(APP_NAME_KEY, null);
+	}
+
+	public void setPackage(String packageName) {
+		SharedPreferences.Editor editor = mSharedPreferences.edit();
+		editor.putString(PACKAGE_NAME_KEY, packageName);
+		editor.commit();
+	}
+
+	public String getPackage() {
+		return mSharedPreferences.getString(PACKAGE_NAME_KEY, null);
 	}
 
 	public void setOnHour(int hour) {

@@ -1,6 +1,6 @@
-package com.ssf.edog;
+package com.puji.edog;
 
-import com.ssf.edog.config.Config;
+import com.puji.edog.R;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -19,6 +19,8 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 
 	private ImageView mFinishBtn;// ÍË³ö³ÌÐò°´Å¥
 	private AlertDialog mAlertDialog;
+
+	private static final int REQUEST_CODE = 101;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,21 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 	}
 
 	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		super.onActivityResult(requestCode, resultCode, data);
+		if (data != null) {
+			Intent intent = getPackageManager().getLaunchIntentForPackage(
+					mPreferenceUtil.getPackage());
+
+			if (intent != null) {
+				startActivity(intent);
+				finish();
+			}
+		}
+	}
+
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.on_off_btn:
@@ -72,8 +89,17 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.open_puji_guanjia_btn:
 
+			if (mPreferenceUtil.getPackage() == null) {
+
+				Intent intent = new Intent(MainMenuActivity.this,
+						PickAppDialogAct.class);
+				startActivityForResult(intent, REQUEST_CODE);
+				return;
+
+			}
+
 			Intent intent = getPackageManager().getLaunchIntentForPackage(
-					Config.PACKAGE_NAME);
+					mPreferenceUtil.getPackage());
 
 			if (intent != null) {
 				startActivity(intent);

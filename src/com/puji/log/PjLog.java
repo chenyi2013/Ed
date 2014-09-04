@@ -1,4 +1,4 @@
-package com.ssf.log;
+package com.puji.log;
 
 import java.io.BufferedWriter;
 import java.io.File;

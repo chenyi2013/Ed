@@ -26,6 +26,24 @@
 
                 <TextView
                     style="@style/TitleFont"
+                    android:text="@string/picked_app" />
+
+                <TextView
+                    android:id="@+id/pick_app_btn"
+                    style="@style/TitleFont"
+                    android:focusable="true"
+                    android:text="@string/pick_choice_app"
+                    android:textColor="#ffffff" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/TitleFont"
                     android:text="@string/toggle_setting" />
 
                 <Switch

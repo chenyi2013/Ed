@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ssf.edog"
+    package="com.puji.edog"
     android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.PUJI.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -55,7 +55,7 @@
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.ssf.edog.SWITCH_ACTION" />
+                <action android:name="com.puji.edog.SWITCH_ACTION" />
             </intent-filter>
         </receiver>
 
@@ -81,13 +81,22 @@
         </activity>
 
         <receiver
-            android:name="com.ssf.edog.receiver.LaunchKeyguardReceiver"
+            android:name=".receiver.LaunchKeyguardReceiver"
             android:enabled="true"
             android:exported="false" >
             <intent-filter>
-                <action android:name="com.ssf.edog.LAUNCH_KEYGUAND_ACTION" />
+                <action android:name="com.puji.edog.LAUNCH_KEYGUAND_ACTION" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.puji.edog.NO_CHOICE_APP" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".PickAppDialogAct"
+            android:label="@string/title_activity_pick_app_dialog"
+            android:theme="@android:style/Theme.Holo.Dialog" >
+        </activity>
     </application>
 
 </manifest>

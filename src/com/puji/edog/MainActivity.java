@@ -1,4 +1,4 @@
-package com.ssf.edog;
+package com.puji.edog;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ssf.edog.service.EdogService;
+import com.puji.edog.service.EdogService;
+import com.puji.edog.R;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 

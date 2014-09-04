@@ -1,4 +1,4 @@
-package com.ssf.edog;
+package com.puji.edog;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
-import android.widget.ToggleButton;
+import android.widget.TextView;
 
-import com.ssf.edog.service.EdogService;
+import com.puji.edog.service.EdogService;
+import com.puji.edog.R;
 
 public class SettingActivity extends BaseActivity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
@@ -23,8 +24,11 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 	private EditText mIntervalText;// 用于输入电子狗嗅探时间间隔的文本框
 	private Button mSaveSettingBtn;// 保存用户设置的按钮
 	private ImageView mFinishBtn;// 退出本设置界面的按钮
+	private TextView mPickAppTv;
 
-	private static final String TAG = "eileen";
+	private static final int REQUEST_CODE = 200;
+
+	private static final String TAG = "SettingActivity";
 	private AlertDialog mAlertDialog;
 
 	@Override
@@ -52,10 +56,25 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 		mFinishBtn = (ImageView) findViewById(R.id.finish);
 		mFinishBtn.setOnClickListener(this);
 
+		mPickAppTv = (TextView) findViewById(R.id.pick_app_btn);
+		mPickAppTv.setOnClickListener(this);
+
+		if (mPreferenceUtil.getAppName() != null) {
+			mPickAppTv.setText(mPreferenceUtil.getAppName());
+		}
+
 		mAlertDialog = new AlertDialog.Builder(this)
 				.setNeutralButton(getString(R.string.confirm), this)
 				.setCancelable(false)
 				.setTitle(getString(R.string.info_prompt_title)).create();
+
+	}
+
+	@Override
+	protected void onResume() {
+
+		super.onResume();
+		mToggleButton.setChecked(mPreferenceUtil.isSwitch());
 	}
 
 	/**
@@ -110,9 +129,21 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 		case R.id.save_setting:
 			saveSetting();
 			break;
-
+		case R.id.pick_app_btn:
+			Intent intent = new Intent(this, PickAppDialogAct.class);
+			startActivityForResult(intent, REQUEST_CODE);
+			break;
 		default:
 			break;
+		}
+
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (resultCode == PickAppDialogAct.RESULT_CODE_SUCCESS) {
+			mPickAppTv.setText(data.getStringExtra(PickAppDialogAct.APP_NAME));
 		}
 
 	}

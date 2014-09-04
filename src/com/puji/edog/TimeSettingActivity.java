@@ -1,4 +1,6 @@
-package com.ssf.edog;
+package com.puji.edog;
+
+import com.puji.edog.R;
 
 import android.app.FragmentManager;
 import android.os.Bundle;

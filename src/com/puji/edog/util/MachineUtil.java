@@ -1,8 +1,8 @@
-package com.ssf.edog.util;
+package com.puji.edog.util;
 
 import java.util.Calendar;
 
-import com.ssf.log.PjLog;
+import com.puji.log.PjLog;
 import com.xboot.stdcall.posix;
 
 public class MachineUtil {

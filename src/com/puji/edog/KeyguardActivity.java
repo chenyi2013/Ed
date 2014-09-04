@@ -1,4 +1,4 @@
-package com.ssf.edog;
+package com.puji.edog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,8 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ssf.edog.config.Config;
-import com.ssf.edog.util.SharedPreferenceUtil;
+import com.puji.edog.config.Config;
+import com.puji.edog.util.SharedPreferenceUtil;
+import com.puji.edog.R;
 
 /**
  * 
@@ -34,8 +35,6 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 	private Button mEnterHomeBtn;
 	private EditText mPwdText;
 	private ImageView mFinishBtn;
-	private AlertDialog mAlertDialog;
-
 	protected PackageManager mPackageManager;
 	protected SharedPreferenceUtil mPreferenceUtil;
 
@@ -53,7 +52,8 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 				} else {// 等待用户输入密码的时间已结束,启动普及管家
 
 					Intent intent = mPackageManager
-							.getLaunchIntentForPackage(Config.PACKAGE_NAME);
+							.getLaunchIntentForPackage(mPreferenceUtil
+									.getPackage());
 
 					if (intent != null) {
 						startActivity(intent);
@@ -78,11 +78,11 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 		mPackageManager = getPackageManager();
 		mPreferenceUtil = new SharedPreferenceUtil(this);
 		initView();
-
-		Intent intent = mPackageManager
-				.getLaunchIntentForPackage(Config.PACKAGE_NAME);
-		if (intent == null) {
-			mAlertDialog.show();
+		if (mPreferenceUtil.getPackage() == null) {
+			Intent intent = new Intent(KeyguardActivity.this,
+					PickAppDialogAct.class);
+			startActivity(intent);
+			finish();
 		}
 
 	}
@@ -105,7 +105,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 		builder.setTitle(getString(R.string.info_prompt_title));
 		builder.setMessage(getString(R.string.not_install_puji_guanjia));
 
-		mAlertDialog = builder.create();
+		builder.create();
 
 	}
 
@@ -152,7 +152,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 			break;
 		case R.id.finish:
 			Intent intent = mPackageManager
-					.getLaunchIntentForPackage(Config.PACKAGE_NAME);
+					.getLaunchIntentForPackage(mPreferenceUtil.getPackage());
 			startActivity(intent);
 			finish();
 		default:

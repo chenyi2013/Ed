@@ -1,4 +1,4 @@
-package com.ssf.edog.service;
+package com.puji.edog.service;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -8,13 +8,11 @@ import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.IBinder;
-import android.util.Log;
 
-import com.ssf.edog.config.Config;
-import com.ssf.edog.util.SharedPreferenceUtil;
+import com.puji.edog.config.Config;
+import com.puji.edog.util.SharedPreferenceUtil;
 
 public class EdogService extends Service {
 
@@ -22,7 +20,9 @@ public class EdogService extends Service {
 	private ActivityManager mActivityManager;
 	private SharedPreferenceUtil mPreferenceUtil;
 	private ScheduledExecutorService mExecutorService;
+
 	private static final int SUCCESS = 1;
+	private static final int NO_CHOICE_APP = 2;
 
 	private static final String TAG = "EdogService";
 
@@ -34,6 +34,10 @@ public class EdogService extends Service {
 			case SUCCESS:
 				Intent intent = new Intent(Config.LAUNCH_KEYGUAGRD_ACTION);
 				sendBroadcast(intent);
+				break;
+			case NO_CHOICE_APP:
+				Intent noChoiceAppIntent = new Intent(Config.NO_CHOICE_APP);
+				sendBroadcast(noChoiceAppIntent);
 				break;
 
 			default:
@@ -72,7 +76,7 @@ public class EdogService extends Service {
 
 				// 如果当前所要监听的程序正在前台运行则不用执行后续代码
 
-				if (runingBagName.equals(Config.PACKAGE_NAME)) {
+				if (runingBagName.equals(mPreferenceUtil.getPackage())) {
 					mPreferenceUtil.setEnable(true);
 					return;
 				}
@@ -82,8 +86,9 @@ public class EdogService extends Service {
 					return;
 				}
 				// 所要监听的程序不在前台运行，切换到该程序
-
-				if (mPreferenceUtil.isEnable()) {
+				if (mPreferenceUtil.getPackage() == null) {
+					mHandler.sendEmptyMessage(NO_CHOICE_APP);
+				} else if (mPreferenceUtil.isEnable()) {
 					mHandler.sendEmptyMessage(SUCCESS);
 				}
 

@@ -11,10 +11,10 @@
     <string name="error_display">对不起，密码错误请重试。</string>
     <string name="on_edog">电子狗已打开</string>
     <string name="off_edog">电子狗已关闭</string>
-    <string name="toggle_setting">开关设置：</string>
+    <string name="toggle_setting">"  开关设置："</string>
     <string name="modify_pwd">修改密码</string>
     <string name="open_puji_guanjia_btn">打开普及管家</string>
-    <string name="interval">嗅探频率：</string>
+    <string name="interval">"  嗅探频率："</string>
     <string name="interval_error">嗅探频率不能为空！</string>
     <string name="second">秒/次</string>
     <string name="title_activity_setting">SettingActivity</string>
@@ -40,6 +40,8 @@
     <string name="timing_reboot">定时重启：</string>
     <string name="setting_alert">"PS:1.定时开关机的间隔不得少于3分钟  \n       2.定时开关机存在1分钟误差  \n       "</string>
     <string name="info_prompt_title">消息提示</string>
+    <string name="please_choice_app">选择所要监测的程序</string>
+    <string name="no_install_puji_product">您还没有安装任何普及科技产品，电子狗将关闭</string>
     <string name="not_install_puji_guanjia">对不起你还没有安装普及管家，电子狗将退出</string>
     <string name="error_prompt_title">错误提示</string>
     <string name="timing_reboot_msg">定时重启设置成功</string>
@@ -64,5 +66,8 @@
     <string name="use_prompt3">3、如媒体机停留在此界面，请联系物业进行处理。</string>
     <string name="prompt">提示</string>
     <string name="not_install_puji_guajia_text">对不起，你还没有安装普及管家！</string>
+    <string name="title_activity_pick_app_dialog">PickAppDialogAct</string>
+    <string name="picked_app">被监测程序：</string>
+    <string name="pick_choice_app">点此选择被监测程序</string>
 
 </resources>

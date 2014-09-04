@@ -1,10 +1,10 @@
-package com.ssf.edog.receiver;
+package com.puji.edog.receiver;
 
-import com.ssf.edog.config.Config;
-import com.ssf.edog.service.EdogService;
-import com.ssf.edog.util.MachineUtil;
-import com.ssf.edog.util.SharedPreferenceUtil;
-import com.ssf.edog.util.TimeUtils;
+import com.puji.edog.config.Config;
+import com.puji.edog.service.EdogService;
+import com.puji.edog.util.MachineUtil;
+import com.puji.edog.util.SharedPreferenceUtil;
+import com.puji.edog.util.TimeUtils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

@@ -1,6 +1,6 @@
-package com.ssf.edog;
+package com.puji.edog;
 
-import com.ssf.edog.util.SharedPreferenceUtil;
+import com.puji.edog.util.SharedPreferenceUtil;
 
 import android.app.Activity;
 import android.content.Intent;

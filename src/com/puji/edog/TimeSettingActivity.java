@@ -1,20 +1,22 @@
 package com.puji.edog;
 
-import com.puji.edog.R;
-
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class TimeSettingActivity extends BaseActivity implements OnClickListener {
+public class TimeSettingActivity extends BaseActivity implements
+		OnClickListener {
 
 	private TimeSettingFragment mSettingFragment;
 
 	private FragmentManager mFragmentManager;
 
 	private ImageView mFinishBtn;
+
+	private TextView mTitle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,9 @@ public class TimeSettingActivity extends BaseActivity implements OnClickListener
 
 		mFinishBtn = (ImageView) findViewById(R.id.finish);
 		mFinishBtn.setOnClickListener(this);
+
+		mTitle = (TextView) findViewById(R.id.title);
+		mTitle.setText(R.string.timing_on_off_setting);
 
 		mFragmentManager = getFragmentManager();
 		mSettingFragment = new TimeSettingFragment();

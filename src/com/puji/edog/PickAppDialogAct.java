@@ -27,8 +27,9 @@ import com.puji.edog.util.SharedPreferenceUtil;
 
 public class PickAppDialogAct extends Activity implements OnClickListener {
 
-	private ListView mPickAppListView;
-	private List<PackageInfo> mInfos;
+	private ListView mPickAppListView;// 用于显示已安装的普及程序
+	private List<PackageInfo> mInfos;// 已安装的普及程序列表
+
 	private SharedPreferenceUtil mPreferenceUtil;
 	private TextView mErrorTV;
 	private Button mConfirmButton;
@@ -36,6 +37,7 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 
 	public static final String PACKAGE_NAME = "package_name";
 	public static final String APP_NAME = "app_name";
+
 	public static final int RESULT_CODE_SUCCESS = 200;
 	public static final int RESULT_CODE_ERROR = 101;
 
@@ -53,6 +55,7 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 
 		Iterator<PackageInfo> iterator = mInfos.iterator();
 
+		// 从mInfos中移除所有非普及产品
 		while (iterator.hasNext()) {
 
 			PackageInfo packageInfo = iterator.next();
@@ -61,6 +64,7 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 				iterator.remove();
 			}
 
+			// 本程序不在被监测程序之列，也从mInfos中移除
 			if (packageInfo.packageName.contains(getPackageName())) {
 				iterator.remove();
 			}
@@ -77,6 +81,9 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 
 	}
 
+	/**
+	 * 初始化UI组件
+	 */
 	private void initView() {
 
 		setTitle(R.string.please_choice_app);
@@ -139,20 +146,30 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
+			ViewHolder viewHolder = null;
+
 			if (convertView == null) {
+
 				convertView = getLayoutInflater().inflate(
 						R.layout.pick_app_list_item, parent, false);
+
+				viewHolder = new ViewHolder();
+				viewHolder.appIcon = (ImageView) convertView
+						.findViewById(R.id.app_icon);
+				viewHolder.appName = (TextView) convertView
+						.findViewById(R.id.pack_app_list_item);
+				viewHolder.packageName = (TextView) convertView
+						.findViewById(R.id.package_name_text);
+
+				convertView.setTag(viewHolder);
 			}
 
-			TextView appNameTv = (TextView) convertView
-					.findViewById(R.id.pack_app_list_item);
-			appNameTv.setText(mInfos.get(position).applicationInfo.loadLabel(
-					getPackageManager()).toString());
-			TextView packageName = (TextView) convertView
-					.findViewById(R.id.package_name_text);
-			packageName.setText(mInfos.get(position).packageName);
-			ImageView appIcon = (ImageView) convertView
-					.findViewById(R.id.app_icon);
+			viewHolder = (ViewHolder) convertView.getTag();
+
+			viewHolder.appName.setText(mInfos.get(position).applicationInfo
+					.loadLabel(getPackageManager()).toString());
+
+			viewHolder.packageName.setText(mInfos.get(position).packageName);
 
 			try {
 				Intent intent = getPackageManager().getLaunchIntentForPackage(
@@ -160,9 +177,9 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 				if (intent != null) {
 					Drawable drawable = getPackageManager().getActivityIcon(
 							intent);
-					appIcon.setImageDrawable(drawable);
+					viewHolder.appIcon.setImageDrawable(drawable);
 				} else {
-					appIcon.setImageResource(R.drawable.ic_launcher);
+					viewHolder.appIcon.setImageResource(R.drawable.ic_launcher);
 				}
 
 			} catch (NameNotFoundException e) {
@@ -171,17 +188,20 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 			}
 			return convertView;
 		}
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.confirm_button:
+			
 			mPreferenceUtil.saveSwitch(false);
+			
 			Intent intent = new Intent(PickAppDialogAct.this, EdogService.class);
 			stopService(intent);
+			
 			setResult(RESULT_CODE_ERROR);
+			
 			finish();
 			break;
 
@@ -189,5 +209,11 @@ public class PickAppDialogAct extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	class ViewHolder {
+		TextView appName;
+		TextView packageName;
+		ImageView appIcon;
 	}
 }

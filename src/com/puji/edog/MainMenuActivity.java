@@ -15,7 +15,7 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 	private Button mPowerBtn;// 自动开关机设置按钮
 	private Button mEdogBtn;// 电子狗设置按钮
 	private Button mPwdSettingBtn;// 密码设置按钮
-	private Button mOpenPuJiBtn;
+	private Button mOpenPuJiBtn;// 打开普及管家按钮
 
 	private ImageView mFinishBtn;// 退出程序按钮
 	private AlertDialog mAlertDialog;
@@ -87,8 +87,9 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 		case R.id.finish:
 			finish();
 			break;
-		case R.id.open_puji_guanjia_btn:
+		case R.id.open_puji_guanjia_btn:// 打开普及管家
 
+			// 判断是否设置所要监听的程序如果没有则打开PickAppDialogAct进行设置
 			if (mPreferenceUtil.getPackage() == null) {
 
 				Intent intent = new Intent(MainMenuActivity.this,
@@ -97,7 +98,7 @@ public class MainMenuActivity extends BaseActivity implements OnClickListener {
 				return;
 
 			}
-
+			// 已经设置所要监听的程序直接启动所要监听的程序
 			Intent intent = getPackageManager().getLaunchIntentForPackage(
 					mPreferenceUtil.getPackage());
 

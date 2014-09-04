@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Edog</string>
+    <string name="app_name">普及媒体机设置</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title">广告机定时选项</string>
+    <string name="title">普及媒体机设置</string>
     <string name="enter_settings">进入设置</string>
     <string name="save_settings">保存设置</string>
     <string name="pwd_hint">请输入管理员密码进入选项设置</string>

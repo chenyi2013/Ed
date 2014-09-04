@@ -25,6 +25,7 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 	private Button mSaveSettingBtn;// 保存用户设置的按钮
 	private ImageView mFinishBtn;// 退出本设置界面的按钮
 	private TextView mPickAppTv;
+	private TextView mTitle;
 
 	private static final int REQUEST_CODE = 200;
 
@@ -58,6 +59,9 @@ public class SettingActivity extends BaseActivity implements OnClickListener,
 
 		mPickAppTv = (TextView) findViewById(R.id.pick_app_btn);
 		mPickAppTv.setOnClickListener(this);
+
+		mTitle = (TextView) findViewById(R.id.title);
+		mTitle.setText(R.string.edog_setting);
 
 		if (mPreferenceUtil.getAppName() != null) {
 			mPickAppTv.setText(mPreferenceUtil.getAppName());

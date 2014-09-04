@@ -40,20 +40,61 @@ public class SharedPreferenceUtil {
 	 */
 	private static final int DEFAULT_INTERVAL = 3;
 
+	/**
+	 * 开机时间所对应的key
+	 */
 	public static final String ON_HOUR_KEY = "on_hour";
 	public static final String ON_MINUTE_KEY = "on_minute";
+
+	/**
+	 * 关机时间所对应的key
+	 */
 	public static final String OFF_HOUR_KEY = "off_hour";
 	public static final String OFF_MINUTE_KEY = "off_minute";
+	/**
+	 * 重启时间所对应的key
+	 */
 	public static final String REBOOT_HOUR_KEY = "reboot_hour";
 	public static final String REBOOT_MINUTE_KEY = "reboot_minute";
+
+	/**
+	 * 定时开关机设置的类型所对应的key
+	 */
 	public static final String TYPE_KEY = "type";
+
+	/**
+	 * 暂停电子狗嗅探的key
+	 */
 	public static final String IS_ENABLE_KEY = "is_enable_key";
+
+	/**
+	 * 被嗅探程序的包名所对应的key
+	 */
 	public static final String PACKAGE_NAME_KEY = "package_name";
+
+	/**
+	 * 被嗅探程序名所对应的key
+	 */
 	public static final String APP_NAME_KEY = "app_name";
 
+	/**
+	 * 关闭定时选项
+	 */
 	public static final int CLOSE_SETTING = 0;
+
+	/**
+	 * 定时开关机的tag
+	 */
 	public static final int AUTO_ON_OFF = 1;
+
+	/**
+	 * 定时重启的tag
+	 */
 	public static final int AUTO_REBOOT = 2;
+
+	/**
+	 * 定时关机的tag
+	 */
 	public static final int AUTO_OFF = 3;
 
 	private SharedPreferences mSharedPreferences;

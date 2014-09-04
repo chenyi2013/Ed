@@ -44,7 +44,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 
 			if (msg.what == SUCESS) {
 
-				if (time != 0) {// 等待用户输入密码的时间还未结束，提示用户输入密码
+				if (time >= 0) {// 等待用户输入密码的时间还未结束，提示用户输入密码
 					mPromptTv.setText(String.format(
 							getResources().getString(R.string.alert_display),
 							time--));

@@ -1,7 +1,5 @@
 package com.puji.edog;
 
-import com.puji.edog.R;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -10,17 +8,20 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ModifyActivity extends BaseActivity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
 
-	private EditText mNewPwdEdt;
-	private EditText mReNewPwdEdt;
-	private Button mSaveButton;
+	private EditText mNewPwdEdt; // 新密码文本框
+	private EditText mReNewPwdEdt;// 再次输入密码文本框
+	private Button mSaveButton;// 保存设置按钮
+
+	private TextView mTitle;// 界面标题
 
 	private ImageView mFinishBtn;// 退出程序按钮
 
-	private String mReNewPwd;
+	private String mReNewPwd;// 确认新密码
 	private String mNewPwd;// 新密码
 
 	private AlertDialog mAlertDialog;
@@ -46,6 +47,9 @@ public class ModifyActivity extends BaseActivity implements OnClickListener,
 
 		mFinishBtn = (ImageView) findViewById(R.id.finish);
 		mFinishBtn.setOnClickListener(this);
+
+		mTitle = (TextView) findViewById(R.id.title);
+		mTitle.setText(R.string.modify_pwd);
 
 		mAlertDialog = new AlertDialog.Builder(this).setNeutralButton(
 				getString(R.string.confirm), this).create();

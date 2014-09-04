@@ -264,6 +264,7 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		}
 	}
 
+	// ±£¥Ê…Ë÷√
 	private void saveSetting() {
 
 		Intent intent = new Intent(Config.SWITCH_ACTION);

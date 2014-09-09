@@ -8,7 +8,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:paddingLeft="200dp"
+        android:paddingRight="200dp" >
 
         <TextView
             android:id="@+id/alert"
@@ -40,12 +42,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:background="#ffffff" >
 
                     <Spinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/land_sp_bg"
+                        style="@android:style/Widget.Holo.Light.Spinner"
                         android:spinnerMode="dropdown" />
                 </LinearLayout>
             </LinearLayout>
@@ -53,6 +59,7 @@
             <TextView
                 android:id="@+id/off_time_lable"
                 style="@style/TitleFont"
+                android:layout_marginTop="50dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="@string/off_time" />

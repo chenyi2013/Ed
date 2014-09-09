@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -154,6 +156,7 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 								mOffMinute));
 					}
 				}, mOffHour, mOffMinute, true);
+		
 
 		mSpinner.setSelection(mPreferenceUtil.getType());
 
@@ -372,6 +375,11 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		mOnTimeLable.setVisibility(View.VISIBLE);
 		mOnTimeLable.setText(R.string.on_time);
 
+		LayoutParams lp = (LinearLayout.LayoutParams) mOnTimeLable
+				.getLayoutParams();
+		lp.setMargins(0, 0, 0, 0);
+		mOnTimeLable.setLayoutParams(lp);
+
 		mOffTimeContainer.setVisibility(View.VISIBLE);
 		mOffTimeLabel.setVisibility(View.VISIBLE);
 
@@ -384,6 +392,12 @@ public class TimeSettingFragment extends Fragment implements OnClickListener,
 		mOnTimeContainer.setVisibility(View.VISIBLE);
 		mOnTimeLable.setVisibility(View.VISIBLE);
 		mOnTimeLable.setText(R.string.timing_reboot);
+
+		LayoutParams lp = (LinearLayout.LayoutParams) mOnTimeLable
+				.getLayoutParams();
+		lp.setMargins(0, 50, 0, 0);
+
+		mOnTimeLable.setLayoutParams(lp);
 
 		mOffTimeContainer.setVisibility(View.GONE);
 		mOffTimeLabel.setVisibility(View.GONE);

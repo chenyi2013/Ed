@@ -38,7 +38,7 @@
     <string name="timing_on_off_setting">定时开关机设置</string>
     <string name="edog_setting">电子狗设置</string>
     <string name="timing_reboot">定时重启：</string>
-    <string name="setting_alert">"PS:1.定时开关机的间隔不得少于3分钟  \n       2.定时开关机存在1分钟误差  \n       "</string>
+    <string name="setting_alert">"PS:1.定时开关机的间隔不得少于3分钟  \n       2.定时开关机存在1分钟误差               \n       "</string>
     <string name="info_prompt_title">消息提示</string>
     <string name="please_choice_app">选择所要监测的程序</string>
     <string name="no_install_puji_product">您还没有安装任何普及科技产品，电子狗将关闭</string>

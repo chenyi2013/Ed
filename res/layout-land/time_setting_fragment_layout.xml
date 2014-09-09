@@ -7,25 +7,33 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="600dp"
         android:layout_marginLeft="400dp"
         android:layout_marginRight="400dp"
-        android:layout_weight="1" >
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/alert"
-            style="@android:style/TextAppearance.Large"
-            android:layout_width="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/kuang1"
+            android:gravity="center"
             android:text="@string/setting_alert"
-            android:textColor="#ff0000" />
+            android:textColor="#ffffff" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@+id/alert"
             android:orientation="vertical"
-            android:padding="50dp" >
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="30dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,8 +54,10 @@
 
                     <Spinner
                         android:id="@+id/spinner"
+                        style="@android:style/Widget.Holo.Light.Spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/land_sp_bg"
                         android:spinnerMode="dropdown" />
                 </LinearLayout>
             </LinearLayout>
@@ -55,6 +65,7 @@
             <TextView
                 android:id="@+id/off_time_lable"
                 style="@style/TitleFont"
+                android:layout_marginTop="50dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
                 android:text="@string/off_time" />
@@ -117,14 +128,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:paddingTop="80dp" >
 
         <Button
             android:id="@+id/save_setting"
             style="@style/ButtonFont"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
             android:text="@string/save_settings" />
     </RelativeLayout>
 

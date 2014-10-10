@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3c3c3c"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="200dp"
+        android:paddingRight="200dp" >
+
+        <TextView
+            android:id="@+id/alert"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_container"
+            android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/kuang1"
+            android:gravity="center"
+            android:text="@string/setting_alert"
+            android:textColor="#ffffff" />
+
+        <LinearLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="20dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
+
+                <TextView
+                    style="@style/TitleFont"
+                    android:text="@string/timing_control" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#ffffff" >
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        style="@android:style/Widget.Holo.Light.Spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/land_sp_bg"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/off_time_lable"
+                style="@style/TitleFont"
+                android:layout_marginTop="50dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/off_time" />
+
+            <LinearLayout
+                android:id="@+id/off_time_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
+
+                <TextView
+                    style="@style/TitleFont"
+                    android:text="@string/every_day"
+                    android:textColor="#bbbbbb" />
+
+                <TextView
+                    android:id="@+id/off_time"
+                    style="@style/TitleFont"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:onClick="true"
+                    android:textColor="#bbbbbb" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/on_time_lable"
+                style="@style/TitleFont"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/on_time" />
+
+            <LinearLayout
+                android:id="@+id/on_time_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp" >
+
+                <TextView
+                    style="@style/TitleFont"
+                    android:text="@string/every_day"
+                    android:textColor="#bbbbbb" />
+
+                <TextView
+                    android:id="@+id/on_time"
+                    style="@style/TitleFont"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:onClick="true"
+                    android:textColor="#bbbbbb" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/save_setting"
+            style="@style/ButtonFont"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/save_settings" />
+    </RelativeLayout>
+
+</LinearLayout>

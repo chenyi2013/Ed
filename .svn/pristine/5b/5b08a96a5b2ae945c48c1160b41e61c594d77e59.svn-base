@@ -2,7 +2,6 @@ package com.puji.edog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,7 +37,6 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 	private ImageView mFinishBtn;
 	protected PackageManager mPackageManager;
 	protected SharedPreferenceUtil mPreferenceUtil;
-	
 
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
@@ -52,7 +50,7 @@ public class KeyguardActivity extends Activity implements OnClickListener,
 							time--));
 					mHandler.sendEmptyMessageDelayed(1, 1000);
 				} else {// 等待用户输入密码的时间已结束,启动普及管家
-					
+
 					Intent intent = mPackageManager
 							.getLaunchIntentForPackage(mPreferenceUtil
 									.getPackage());

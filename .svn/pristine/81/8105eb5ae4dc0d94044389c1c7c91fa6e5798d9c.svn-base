@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <include layout="@layout/top_title_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#3c3c3c" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:padding="50dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/TitleFont"
+                    android:text="@string/old_pwd" />
+
+                <EditText
+                    android:id="@+id/new_pwd"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="#ffffff"
+                    android:gravity="left"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:src="@drawable/clear"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/TitleFont"
+                    android:text="@string/new_pwd" />
+
+                <EditText
+                    android:id="@+id/re_new_pwd"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="#ffffff"
+                    android:gravity="left"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:src="@drawable/clear"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#3c3c3c" >
+
+        <Button
+            android:id="@+id/save_setting"
+            style="@style/ButtonFont"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/save_settings" />
+    </RelativeLayout>
+
+    <include layout="@layout/bottom_layout" />
+
+</LinearLayout>
